@@ -15,7 +15,6 @@ services:
       - "9200:9200"
       - "9300:9300"
     environment:
-      - "discovery.type=single-node"
       - "node.name=elasticsearch1"
       - "bootstrap.memory_lock=true"
       - "cluster.name=es-cluster"
@@ -49,7 +48,6 @@ services:
       - "9201:9200"
       - "9301:9300"
     environment:
-      - "discovery.type=single-node"
       - "node.name=elasticsearch2"
       - "bootstrap.memory_lock=true"
       - "cluster.name=es-cluster"
@@ -69,34 +67,6 @@ services:
       resources:
         limits:
           memory: 1500m
-  
-  elasticsearch1-exporter:
-    image: justwatch/elasticsearch_exporter:1.1.0
-    container_name: elasticsearch_exporter
-    hostname: elasticsearchexporter
-    restart: always
-    command:
-     - '-es.uri=http://elasticsearch1:9200'
-    ports:
-      - "9108:9108"
-    deploy:
-      resources:
-        limits:
-          memory: 200m
-  
-  elasticsearch2-exporter:
-    image: justwatch/elasticsearch_exporter:1.1.0
-    container_name: elasticsearch_exporter
-    hostname: elasticsearchexporter
-    restart: always
-    command:
-     - '-es.uri=http://elasticsearch2:9200'
-    ports:
-      - "9109:9108"
-    deploy:
-      resources:
-        limits:
-          memory: 200m
 
 volumes:
   es1_data:
