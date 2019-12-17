@@ -126,6 +126,10 @@ services:
       - "XPACK_MONITORING_ENABLED=false"
     ports:
       - "5601:5601"
+    deploy:
+      resources:
+        limits:
+          memory: 750m
 
   es-writer:
     build: es-writer
@@ -149,6 +153,23 @@ services:
       - type: bind
         source: ./logstash-ingest/data
         target: /data
+    deploy:
+      resources:
+        limits:
+          memory: 500m
+
+  filebeat-ingest:
+    build: ./filebeat-ingest
+    container_name: filebeat-ingest
+    restart: "no"
+    volumes:
+      - type: bind
+        source: ./filebeat-ingest/data
+        target: /data
+    deploy:
+      resources:
+        limits:
+          memory: 500m
 
 volumes:
   es1_data:
