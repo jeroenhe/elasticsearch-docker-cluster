@@ -31,7 +31,7 @@ def write_data():
         # exists, it is updated.
         res = es.index(index="test-index", id=counter, body=doc)
 
-        LOGGER.info("Index result: %s", res['result'])
+        LOGGER.info("Index result for text '%s': %s", doc['text'], res['result'])
         time.sleep(5)
 
 

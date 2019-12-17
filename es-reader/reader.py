@@ -24,10 +24,8 @@ def read_data():
         # Search for the latest record
         # https://elasticsearch-py.readthedocs.io/en/master/api.html#elasticsearch.Elasticsearch.search
         # https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html
-        res = es.search(index="test-index", body={"size": 1, "sort": "timestamp", "query": {"match_all": {}}})
-        LOGGER.info("Took: %sms, Got %d hits:", res['took'], res['hits']['total']['value'])
-        for hit in res['hits']['hits']:
-            LOGGER.info("%(timestamp)s %(text)s", hit["_source"])
+        res = es.search(index="test-index", body={"size": 1, "sort": [{"timestamp": "desc"}], "query": {"match_all": {}}})
+        LOGGER.info("Took: %sms, Got %d hits. First hit: %s", res['took'], res['hits']['total']['value'], res['hits']['hits'][0]["_source"])
         time.sleep(5)
 
 
