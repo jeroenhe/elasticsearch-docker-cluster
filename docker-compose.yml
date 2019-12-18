@@ -20,17 +20,19 @@ services:
       - "cluster.name=es-cluster"
       - "discovery.seed_hosts=elasticsearch2,elasticsearch3,elasticsearch1"
       - "cluster.initial_master_nodes=elasticsearch2,elasticsearch3,elasticsearch1"
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.index.number_of_replicas=0"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.index.number_of_replicas=0 -Des.enforce.bootstrap.checks=true"
       - "xpack.security.enabled=false"
+      - "xpack.security.http.ssl.enabled=false"
+      - "xpack.security.transport.ssl.enabled=false"
       - "xpack.monitoring.enabled=true"
       - "xpack.ml.enabled=false"
       - "xpack.graph.enabled=false"
       - "xpack.watcher.enabled=false"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9200"]
-      interval: 30s
-      timeout: 10s
-      retries: 10
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:9200"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 10
     ulimits:
       memlock:
         soft: -1
@@ -58,17 +60,19 @@ services:
       - "cluster.name=es-cluster"
       - "discovery.seed_hosts=elasticsearch1,elasticsearch2,elasticsearch3"
       - "cluster.initial_master_nodes=elasticsearch1,elasticsearch2,elasticsearch3"
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.index.number_of_replicas=0"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.index.number_of_replicas=0 -Des.enforce.bootstrap.checks=true"
       - "xpack.security.enabled=false"
+      - "xpack.security.http.ssl.enabled=false"
+      - "xpack.security.transport.ssl.enabled=false"
       - "xpack.monitoring.enabled=true"
       - "xpack.ml.enabled=false"
       - "xpack.graph.enabled=false"
       - "xpack.watcher.enabled=false"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9200"]
-      interval: 30s
-      timeout: 10s
-      retries: 10
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:9200"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 10
     ulimits:
       memlock:
         soft: -1
@@ -96,17 +100,19 @@ services:
       - "cluster.name=es-cluster"
       - "discovery.seed_hosts=elasticsearch1,elasticsearch2,elasticsearch3"
       - "cluster.initial_master_nodes=elasticsearch1,elasticsearch2,elasticsearch3"
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.index.number_of_replicas=0"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.index.number_of_replicas=0 -Des.enforce.bootstrap.checks=true"
       - "xpack.security.enabled=false"
+      - "xpack.security.http.ssl.enabled=false"
+      - "xpack.security.transport.ssl.enabled=false"
       - "xpack.monitoring.enabled=true"
       - "xpack.ml.enabled=false"
       - "xpack.graph.enabled=false"
       - "xpack.watcher.enabled=false"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9200"]
-      interval: 30s
-      timeout: 10s
-      retries: 10
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:9200"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 10
     ulimits:
       memlock:
         soft: -1
