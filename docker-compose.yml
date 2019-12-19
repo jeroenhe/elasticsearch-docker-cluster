@@ -139,7 +139,7 @@ services:
     container_name: kibana
     restart: unless-stopped
     environment:
-      - "ELASTICSEARCH_HOSTS=http://elasticsearch1:9200"
+      - 'ELASTICSEARCH_HOSTS=["http://elasticsearch1:9200","http://elasticsearch2:9200","http://elasticsearch3:9200"]'
       - "SERVER_NAME=localhost"
       - "XPACK_MONITORING_ENABLED=true"
     ports:
