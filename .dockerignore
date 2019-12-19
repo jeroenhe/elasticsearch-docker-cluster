@@ -1,2 +1,3 @@
 filebeat-ingest/data/
 logstash-ingest/data/
+shared_folder/

@@ -11,6 +11,9 @@ services:
       - type: volume
         source: es1_data
         target: /usr/share/elasticsearch/data
+      - type: bind
+        source: ./shared_folder
+        target: /shared_folder
     ports: 
       - "9200:9200"
       - "9300:9300"
@@ -28,11 +31,12 @@ services:
       - "xpack.ml.enabled=false"
       - "xpack.graph.enabled=false"
       - "xpack.watcher.enabled=false"
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:9200"]
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 10
+      - "path.repo=/shared_folder"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200"]
+      interval: 30s
+      timeout: 10s
+      retries: 30
     ulimits:
       memlock:
         soft: -1
@@ -51,6 +55,9 @@ services:
       - type: volume
         source: es2_data
         target: /usr/share/elasticsearch/data
+      - type: bind
+        source: ./shared_folder
+        target: /shared_folder
     ports: 
       - "9201:9200"
       - "9301:9300"
@@ -68,11 +75,12 @@ services:
       - "xpack.ml.enabled=false"
       - "xpack.graph.enabled=false"
       - "xpack.watcher.enabled=false"
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:9200"]
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 10
+      - "path.repo=/shared_folder"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200"]
+      interval: 30s
+      timeout: 10s
+      retries: 30
     ulimits:
       memlock:
         soft: -1
@@ -91,6 +99,9 @@ services:
       - type: volume
         source: es3_data
         target: /usr/share/elasticsearch/data
+      - type: bind
+        source: ./shared_folder
+        target: /shared_folder
     ports: 
       - "9202:9200"
       - "9302:9300"
@@ -108,11 +119,12 @@ services:
       - "xpack.ml.enabled=false"
       - "xpack.graph.enabled=false"
       - "xpack.watcher.enabled=false"
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:9200"]
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 10
+      - "path.repo=/shared_folder"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200"]
+      interval: 30s
+      timeout: 10s
+      retries: 30
     ulimits:
       memlock:
         soft: -1
