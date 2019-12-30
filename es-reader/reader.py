@@ -32,8 +32,8 @@ def read_data():
 def main():
     global LOGGER
     logging.basicConfig(level=logging.INFO, format=LOGGER_FORMAT)
-    LOGGER = logging.getLogger('es-writer')
-    LOGGER.info("es-writer was started")
+    LOGGER = logging.getLogger('es-reader')
+    LOGGER.info("es-reader was started")
     while True:
         try:
             read_data()
@@ -44,7 +44,7 @@ def main():
             LOGGER.error("Fatal error in main loop", exc_info=True)
             sys.exit(1)
         finally:
-            LOGGER.info("es-writer was stopped")
+            LOGGER.info("es-reader was stopped")
 
 
 if __name__ == "__main__":
