@@ -10,7 +10,7 @@ Example indices created:
 
 ### `test-index`
 
-Docker container `es-writer` writes data continuously to index `test-index` and reads it using container `es-reader`.
+Docker container `es-writer` writes data continuously to index `test-index` and reads it using container `es-reader`, all using python scripts and the [official low-level elasticsearch python client library](https://pypi.org/project/elasticsearch/).
 
 ### `blogs`
 
