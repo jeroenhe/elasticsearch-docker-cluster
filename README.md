@@ -1,6 +1,8 @@
 # Elasticsearch cluster in docker
 
-This project provides you with an elasticsearch cluster consisting of three elasticsearch instances.
+This project provides you with an elasticsearch cluster consisting of three elasticsearch instances, using the basic license.
+
+Disclaimer: this setup is not meant for production usage, but is very well suited for local integration testing projects and a means of getting to play around with an elasticsearch cluster easily.
 
 ## Indices
 
@@ -37,19 +39,10 @@ Other services:
 - [Kibana](http://localhost:5601)
 - [All five created indices in Kibana](http://localhost:5601/app/kibana#/management/elasticsearch/index_management/indices?_g=())
 
-## Setup Security
+## (Optional) Setup security features for Elasticsearch
 
-_By default, the Elasticsearch security features are disabled when you have a basic or trial license. To enable security features, use the xpack.security.enabled setting._
+By default, the Elasticsearch security features are disabled when you have a basic or trial license. To enable security features, use the xpack.security.enabled setting..
 
-Code:
+_Starting with Elastic Stack 6.8 and 7.1, security features like TLS encrypted communication, role-based access control (RBAC), and more are available for free within the default distribution. In this blog post, we’re going to cover how to get started with using these features to secure your Elasticsearch clusters._
 
-    # https://www.elastic.co/blog/getting-started-with-elasticsearch-security
-    bin/elasticsearch-certutil cert -out config/elastic-certificates.p12 -pass ""
-    xpack.security.enabled: true
-    xpack.security.transport.ssl.enabled: true
-    xpack.security.transport.ssl.verification_mode: certificate
-    xpack.security.transport.ssl.keystore.path: elastic-certificates.p12
-    xpack.security.transport.ssl.truststore.path: elastic-certificates.p12
-
-
-This setup is not meant for production usage, but is very well suited for local integration testing projects and a means of getting to play around with an elasticsearch cluster easily.
+[(source)](https://www.elastic.co/blog/getting-started-with-elasticsearch-security)
