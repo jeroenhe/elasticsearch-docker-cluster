@@ -1,4 +1,4 @@
-FROM docker.elastic.co/logstash/logstash:7.5.0
+FROM docker.elastic.co/logstash/logstash:7.6.1
 
 USER root
 
