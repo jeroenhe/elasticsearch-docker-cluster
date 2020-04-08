@@ -25,7 +25,7 @@ Example taken from the [Elastic Engineer I training](https://training.elastic.co
 
 Make sure you provide docker with enough memory, before you run it with `docker-compose up -d`.
 
-Confirm that elasticsearch is healthy (after a little while) by visiting on of the following:
+Confirm that elasticsearch is healthy (after a little while) by visiting one of the following links from your browser or a tool like curl or httpie:
 
 Elastic search nodes:
 
