@@ -41,14 +41,14 @@ Confirm that elasticsearch is healthy (after a little while) by visiting one of 
 Elastic search nodes:
 
 - [cluster health](http://localhost:9200/_cluster/health?pretty=true)
-- [elasticsearch1](http://localhost:9200/_cat/health)
-- [elasticsearch2](http://localhost:9201/_cat/health)
-- [elasticsearch3](http://localhost:9202/_cat/health)
+- [elasticsearch1 node health](http://localhost:9200/_cat/health)
+- [elasticsearch2 node health](http://localhost:9201/_cat/health)
+- [elasticsearch3 node health](http://localhost:9202/_cat/health)
 
 Other services:
 
 - [Kibana](http://localhost:5601)
-- [All five created indices in Kibana](http://localhost:5601/app/kibana#/management/elasticsearch/index_management/indices?_g=())
+- [All five indices in Kibana](http://localhost:5601/app/kibana#/management/elasticsearch/index_management/indices?_g=())
 
 ## (Optional) Setup security features for Elasticsearch
 
@@ -57,3 +57,8 @@ By default, the Elasticsearch security features are disabled when you have a bas
 _Starting with Elastic Stack 6.8 and 7.1, security features like TLS encrypted communication, role-based access control (RBAC), and more are available for free within the default distribution. In this blog post, we’re going to cover how to get started with using these features to secure your Elasticsearch clusters._
 
 [(source)](https://www.elastic.co/blog/getting-started-with-elasticsearch-security)
+
+## Snapshots
+
+A folder has been bind-mounted to all elasticsearch nodes already with the purpose of sharing snapshots with the docker host. This folder is relative from this directory: `./shared_folder`.
+When registering a (fs-type) snapshot repository inside elasticsearch, you should make it point to `/shared_folder` from inside the container.
