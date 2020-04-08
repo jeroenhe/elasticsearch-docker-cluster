@@ -24,7 +24,7 @@ Example taken from the [Elastic Engineer I training](https://training.elastic.co
 
 ### `logs_server*`
 
-Example taken from the [Elastic Engineer I training](https://training.elastic.co/instructor-led-training/ElasticsearchEngineerI) as well, containing an excerpt from websserver access logs for the [elastic blogs website](https://www.elastic.co/blog/). This is a Time Series Dataset.
+Example taken from the [Elastic Engineer I training](https://training.elastic.co/instructor-led-training/ElasticsearchEngineerI) as well, containing an excerpt from websserver access logs for the [elastic blogs website](https://www.elastic.co/blog/). [View the data](http://localhost:9200/logs_server*/_search?pretty=true&size=1). This is a Time Series Dataset.
 
 ## Get it up and running
 
