@@ -4,9 +4,14 @@ This project provides you with an elasticsearch cluster consisting of three elas
 
 Disclaimer: this setup is not meant for production usage, but is very well suited for local integration testing projects and a means of getting to play around with an elasticsearch cluster easily.
 
-## Indices
+## Prerequisites
 
-Example indices created:
+- a machine with enough RAM (at least 8 gb)
+- `docker` and `docker-compose` installed (on Mac or Windows, Docker Desktop installs both of them).
+
+## Elasticsearch indices
+
+Some example indices are created at startup:
 
 ### `test-index`
 
@@ -23,7 +28,7 @@ Example taken from the [Elastic Engineer I training](https://training.elastic.co
 
 ## Get it up and running
 
-Make sure you provide docker with enough memory, before you run it with `docker-compose up -d`.
+Make sure you provide docker with enough memory (the default 2gb of memory is not enough, consult your Docker Desktop configuration to change this), before you run it with `docker-compose up -d` or `./run.sh`. It also requires docker-compose, which is installed as part of Docker Desktop.
 
 Confirm that elasticsearch is healthy (after a little while) by visiting one of the following links from your browser or a tool like curl or httpie:
 
