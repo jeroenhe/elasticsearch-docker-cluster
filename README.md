@@ -1,8 +1,8 @@
 # Elasticsearch cluster in docker
 
-This project provides you with an elasticsearch cluster consisting of three elasticsearch instances, using the basic license.
+This project provides you with an elasticsearch cluster consisting of three elasticsearch instances, using the basic license. I've created it during and after the Elastic Engineer training to help me with a ready-to-go environment where I can play with the training labs.
 
-Disclaimer: this setup is not meant for production usage, but is very well suited for local integration testing projects and a means of getting to play around with an elasticsearch cluster easily.
+Disclaimer: this setup is not meant for production usage!
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ Example taken from the [Elastic Engineer I training](https://training.elastic.co
 
 ### `logs_server*`
 
-Example taken from the [Elastic Engineer I training](https://training.elastic.co/instructor-led-training/ElasticsearchEngineerI) as well, containing an excerpt from websserver access logs for the [elastic blogs website](https://www.elastic.co/blog/). [View the data](http://localhost:9200/logs_server*/_search?pretty=true&size=1). This is a Time Series Dataset.
+Example taken from the [Elastic Engineer I training](https://training.elastic.co/instructor-led-training/ElasticsearchEngineerI) as well, containing an excerpt from websserver access logs for the [elastic blogs website](https://www.elastic.co/blog/). [View the data](http://localhost:9200/logs_server*/_search?pretty=true&size=1). This is a Time Series Dataset. It can take a while to import this entirely.
 
 ## Get it up and running
 
@@ -36,7 +36,7 @@ OR
 
     ./run.sh
 
-Confirm that elasticsearch is healthy (after a little while) by visiting one of the following links from your browser or a tool like curl or httpie:
+Confirm that elasticsearch is healthy (after a little while) by visiting one of the following links from your browser or a tool like curl or [httpie](https://httpie.org/):
 
 Elastic search nodes:
 
