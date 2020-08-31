@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker-compose down -v
+docker-compose --compatibility down -v
