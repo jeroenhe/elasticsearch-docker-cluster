@@ -41,6 +41,7 @@ Confirm that elasticsearch is healthy (after a little while) by visiting one of 
 Elastic search nodes:
 
 - [cluster health](http://localhost:9200/_cluster/health?pretty=true)
+- [cluster nodes](http://localhost:9200/_nodes/_all/http?pretty=true)
 - [elasticsearch1 node health](http://localhost:9200/_cat/health)
 - [elasticsearch2 node health](http://localhost:9201/_cat/health)
 - [elasticsearch3 node health](http://localhost:9202/_cat/health)

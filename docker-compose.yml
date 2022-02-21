@@ -1,9 +1,9 @@
-version: '3.6'
+version: '3.9'
 
 services:
 
   elasticsearch1:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.0.0
     container_name: elasticsearch1
     hostname: elasticsearch1
     restart: unless-stopped
@@ -27,7 +27,6 @@ services:
       - "xpack.security.enabled=false"
       - "xpack.security.http.ssl.enabled=false"
       - "xpack.security.transport.ssl.enabled=false"
-      - "xpack.monitoring.enabled=true"
       - "xpack.ml.enabled=false"
       - "xpack.graph.enabled=false"
       - "xpack.watcher.enabled=false"
@@ -47,7 +46,7 @@ services:
           memory: 1500m
 
   elasticsearch2:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.0.0
     container_name: elasticsearch2
     hostname: elasticsearch2
     restart: unless-stopped
@@ -71,7 +70,6 @@ services:
       - "xpack.security.enabled=false"
       - "xpack.security.http.ssl.enabled=false"
       - "xpack.security.transport.ssl.enabled=false"
-      - "xpack.monitoring.enabled=true"
       - "xpack.ml.enabled=false"
       - "xpack.graph.enabled=false"
       - "xpack.watcher.enabled=false"
@@ -85,13 +83,9 @@ services:
       memlock:
         soft: -1
         hard: -1
-    deploy:
-      resources:
-        limits:
-          memory: 1500m
 
   elasticsearch3:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.0.0
     container_name: elasticsearch3
     hostname: elasticsearch3
     restart: unless-stopped
@@ -115,7 +109,6 @@ services:
       - "xpack.security.enabled=false"
       - "xpack.security.http.ssl.enabled=false"
       - "xpack.security.transport.ssl.enabled=false"
-      - "xpack.monitoring.enabled=true"
       - "xpack.ml.enabled=false"
       - "xpack.graph.enabled=false"
       - "xpack.watcher.enabled=false"
@@ -129,35 +122,39 @@ services:
       memlock:
         soft: -1
         hard: -1
-    deploy:
-      resources:
-        limits:
-          memory: 1500m
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.9.2
+    image: docker.elastic.co/kibana/kibana:8.0.0
     container_name: kibana
     restart: unless-stopped
     environment:
       - 'ELASTICSEARCH_HOSTS=["http://elasticsearch1:9200","http://elasticsearch2:9200","http://elasticsearch3:9200"]'
       - "SERVER_NAME=localhost"
-      - "XPACK_MONITORING_ENABLED=true"
+      - "SERVER_BASEPATH="
+      - "XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=UEs2S28DisjIMEZglnjMUEs2S28DisjIMEZglnjM"
+      - "XPACK.REPORTING.ENCRYPTIONKEY=UEs2S28DisjIMEZglnjMUEs2S28DisjIMEZglnjM"
+      - "XPACK_SECURITY_ENCRYPTIONKEY=UEs2S28DisjIMEZglnjMUEs2S28DisjIMEZglnjM"
+      # - "XPACK_REPORTING_KIBANASERVER_HOSTNAME=localhost"
     ports:
       - "5601:5601"
+    volumes:
+    - type: volume
+      source: kibana_config
+      target: /usr/share/kibana/config
 
   es-writer:
     build: es-writer
     container_name: es-writer
     restart: unless-stopped
     environment:
-      - "ES_HOST_SEED=elasticsearch1,elasticsearch2,elasticsearch3"
+      - "ES_HOST_SEED=http://elasticsearch1:9200,http://elasticsearch2:9200,http://elasticsearch3:9200"
 
   es-reader:
     build: es-reader
     container_name: es-reader
     restart: unless-stopped 
     environment:
-      - "ES_HOST_SEED=elasticsearch3,elasticsearch2,elasticsearch1"
+      - "ES_HOST_SEED=http://elasticsearch3:9200,http://elasticsearch2:9200,http://elasticsearch1:9200"
 
   logstash-ingest:
     build: ./logstash-ingest
@@ -167,10 +164,6 @@ services:
       - type: bind
         source: ./logstash-ingest/data
         target: /data
-    deploy:
-      resources:
-        limits:
-          memory: 500m
 
   filebeat-ingest:
     build: ./filebeat-ingest
@@ -180,12 +173,9 @@ services:
       - type: bind
         source: ./filebeat-ingest/data
         target: /data
-    deploy:
-      resources:
-        limits:
-          memory: 500m
 
 volumes:
   es1_data:
   es2_data:
   es3_data:
+  kibana_config:
