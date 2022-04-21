@@ -3,7 +3,7 @@ version: '3.9'
 services:
 
   elasticsearch1:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.0.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
     container_name: elasticsearch1
     hostname: elasticsearch1
     restart: unless-stopped
@@ -46,7 +46,7 @@ services:
           memory: 1500m
 
   elasticsearch2:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.0.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
     container_name: elasticsearch2
     hostname: elasticsearch2
     restart: unless-stopped
@@ -85,7 +85,7 @@ services:
         hard: -1
 
   elasticsearch3:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.0.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
     container_name: elasticsearch3
     hostname: elasticsearch3
     restart: unless-stopped
@@ -124,7 +124,7 @@ services:
         hard: -1
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:8.0.0
+    image: docker.elastic.co/kibana/kibana:${ELASTIC_VERSION}
     container_name: kibana
     restart: unless-stopped
     environment:

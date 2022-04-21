@@ -1,4 +1,4 @@
-FROM docker.elastic.co/beats/filebeat:8.0.0
+FROM docker.elastic.co/beats/filebeat:8.1.3
 
 USER root
 
