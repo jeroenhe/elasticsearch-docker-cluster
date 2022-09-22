@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
 
   elasticsearch1:
@@ -16,7 +14,6 @@ services:
         target: /shared_folder
     ports: 
       - "9200:9200"
-      - "9300:9300"
     environment:
       - "node.name=elasticsearch1"
       - "bootstrap.memory_lock=true"
@@ -59,7 +56,6 @@ services:
         target: /shared_folder
     ports: 
       - "9201:9200"
-      - "9301:9300"
     environment:
       - "node.name=elasticsearch2"
       - "bootstrap.memory_lock=true"
@@ -98,7 +94,6 @@ services:
         target: /shared_folder
     ports: 
       - "9202:9200"
-      - "9302:9300"
     environment:
       - "node.name=elasticsearch3"
       - "bootstrap.memory_lock=true"
@@ -152,12 +147,15 @@ services:
   es-reader:
     build: es-reader
     container_name: es-reader
-    restart: unless-stopped 
+    restart: unless-stopped
     environment:
       - "ES_HOST_SEED=http://elasticsearch3:9200,http://elasticsearch2:9200,http://elasticsearch1:9200"
 
   logstash-ingest:
-    build: ./logstash-ingest
+    build:
+      context: ./logstash-ingest
+      args:
+        - "ELASTIC_VERSION=${ELASTIC_VERSION}"
     container_name: logstash-ingest
     restart: "no"
     volumes:
@@ -166,7 +164,10 @@ services:
         target: /data
 
   filebeat-ingest:
-    build: ./filebeat-ingest
+    build:
+      context: ./filebeat-ingest
+      args:
+        - "ELASTIC_VERSION=${ELASTIC_VERSION}"
     container_name: filebeat-ingest
     restart: "no"
     volumes:
