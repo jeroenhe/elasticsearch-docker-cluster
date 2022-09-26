@@ -6,8 +6,8 @@ Disclaimer: this setup is not meant for production usage!
 
 ## Prerequisites
 
-- a machine with enough RAM (at least 8 gb)
-- `docker` and `docker-compose` installed (on Mac or Windows, Docker Desktop installs both of them).
+- A machine with enough RAM (at least 8 gb allocated for the docker environment)
+- Docker. (Docker Desktop will suffice for Mac or Windows, but another provider like Rancher Desktop should also work).
 
 ## Elasticsearch indices
 
@@ -30,7 +30,7 @@ Example taken from the [Elastic Engineer I training](https://training.elastic.co
 
 Make sure you provide docker with enough memory (the default 2gb of memory is not enough, consult your Docker Desktop configuration to change this), before you run it with
 
-    docker-compose up -d
+    docker compose up -d
 
 OR
 
