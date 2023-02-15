@@ -14,7 +14,7 @@ if [ "${EXIT_CODE}" != "0" ]; then
     ./filebeat -c /data/filebeat.yml
     echo "Import finished."
 else
-    echo "Indices logs_server* where already imported. Skipping."
+    echo "Indices logs_server* were already imported. Skipping."
 fi
 
 exit 0

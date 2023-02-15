@@ -9,13 +9,15 @@ from elasticsearch import Elasticsearch
 
 
 LOGGER_FORMAT = '%(asctime)-15s %(message)s'
-LOGGER = None
+logging.basicConfig(level=logging.INFO, format=LOGGER_FORMAT)
+LOGGER = logging.getLogger('es-writer')
+
 ES_HOST_SEED = os.environ['ES_HOST_SEED'].split(',')
 
 
 def write_data():
     # https://elasticsearch-py.readthedocs.io/en/master/
-    es = Elasticsearch(ES_HOST_SEED, sniff_on_start=True, sniff_on_connection_fail=True)
+    es = Elasticsearch(ES_HOST_SEED, sniff_on_start=True, sniff_on_node_failure=True)
     counter=-1
     
     while True:
@@ -29,16 +31,13 @@ def write_data():
 
         # when this service restarted, the counter is reset. When a document with the same id already
         # exists, it is updated.
-        res = es.index(index="test-index", id=counter, body=doc)
+        res = es.index(index="test-index", id=counter, document=doc, op_type="index")
 
         LOGGER.info("Index result for text '%s': %s", doc['text'], res['result'])
         time.sleep(5)
 
 
 def main():
-    global LOGGER
-    logging.basicConfig(level=logging.INFO, format=LOGGER_FORMAT)
-    LOGGER = logging.getLogger('es-writer')
     LOGGER.info("es-writer was started")
     while True:
         try:

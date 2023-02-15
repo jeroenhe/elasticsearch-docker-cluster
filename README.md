@@ -28,13 +28,20 @@ Example taken from the [Elastic Engineer I training](https://training.elastic.co
 
 ## Get it up and running
 
-Make sure you provide docker with enough memory (the default 2gb of memory is not enough, consult your Docker Desktop configuration to change this), before you run it with
+Make sure you provide docker with enough memory (the default 2gb of memory is not enough, consult your Docker Desktop configuration to change this), before you run it with:
 
     docker compose up -d
 
 OR
 
     ./run.sh
+
+
+    # Stop the services
+    ./down.sh
+
+    # Stop the services and clean the volumes. This is useful for starting with a clean slate.
+    ./clean.sh
 
 Confirm that elasticsearch is healthy (after a little while) by visiting one of the following links from your browser or a tool like curl or [httpie](https://httpie.org/):
 
