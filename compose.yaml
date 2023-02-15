@@ -1,7 +1,7 @@
 services:
 
   elasticsearch1:
-    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
     container_name: elasticsearch1
     hostname: elasticsearch1
     restart: unless-stopped
@@ -44,7 +44,7 @@ services:
           memory: 1500m
 
   elasticsearch2:
-    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
     container_name: elasticsearch2
     hostname: elasticsearch2
     restart: unless-stopped
@@ -83,7 +83,7 @@ services:
         hard: -1
 
   elasticsearch3:
-    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
     container_name: elasticsearch3
     hostname: elasticsearch3
     restart: unless-stopped
@@ -122,7 +122,7 @@ services:
         hard: -1
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:${ELASTIC_VERSION}
+    image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
     container_name: kibana
     restart: unless-stopped
     environment:
@@ -158,7 +158,7 @@ services:
     build:
       context: ./logstash-ingest
       args:
-        - "ELASTIC_VERSION=${ELASTIC_VERSION}"
+        - "STACK_VERSION=${STACK_VERSION}"
     container_name: logstash-ingest
     restart: "no"
     volumes:
@@ -170,7 +170,7 @@ services:
     build:
       context: ./filebeat-ingest
       args:
-        - "ELASTIC_VERSION=${ELASTIC_VERSION}"
+        - "STACK_VERSION=${STACK_VERSION}"
     container_name: filebeat-ingest
     restart: "no"
     volumes:
